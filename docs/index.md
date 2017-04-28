@@ -1,3 +1,3 @@
 # Contents
 
-- (Styles)[styles.md]
+- [Styles](styles.md)
