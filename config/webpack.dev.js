@@ -1,14 +1,12 @@
-const path = require('path');
-
 const WebpackMerge = require('webpack-merge');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
+const paths = require('./paths');
 const CommonConfig = require('./webpack.common');
 
 module.exports = WebpackMerge(CommonConfig, {
   devtool: 'cheap-module-source-map',
   devServer: {
-    contentBase: path.join(__dirname, '..', 'build'),
+    contentBase: paths.BuildRoot,
     inline: true,
     historyApiFallback: true
   }

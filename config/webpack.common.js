@@ -1,12 +1,8 @@
-const path = require('path');
-
 const Webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-const ProjectRoot = path.join(__dirname, '..');
-const SourceRoot = path.join(ProjectRoot, 'src');
-const BuildRoot = path.join(ProjectRoot, 'build');
+const paths = require('./paths');
 
 module.exports = {
   target: 'web',
@@ -16,7 +12,7 @@ module.exports = {
     'app': './src/main.ts'
   },
   output: {
-    path: BuildRoot,
+    path: paths.BuildRoot,
     filename: '[name].js',
     sourceMapFilename: '[name].map.js'
   },
@@ -45,16 +41,44 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        include: SourceRoot,
-        loader: 'raw-loader!sass-loader'
+        include: paths.AppRoot,
+        use: [{
+            loader: 'raw-loader'
+          },
+          {
+            loader: 'postcss-loader'
+          },
+          {
+            loader: 'sass-loader',
+            query: {
+              sourceMaps: true
+            }
+          }
+        ]
       },
       {
-        test: /\.sass$/,
-        exclude: SourceRoot,
-        loader: ExtractTextPlugin.extract({
-          fallback: "style-loader",
-          use: "css-loader!sass-loader",
-        }),
+        test: /\.scss$/,
+        exclude: paths.AppRoot,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [{
+              loader: 'css-loader',
+              query: {
+                modules: false,
+                sourceMaps: true
+              }
+            },
+            {
+              loader: 'postcss-loader'
+            },
+            {
+              loader: 'sass-loader',
+              query: {
+                sourceMaps: true
+              }
+            }
+          ]
+        })
       }
     ]
   },
@@ -64,7 +88,7 @@ module.exports = {
     }),
     new Webpack.ContextReplacementPlugin(
       /angular(\\|\/)core(\\|\/)@angular/,
-      SourceRoot, {}
+      paths.SourceRoot, {}
     ),
     new Webpack.optimize.CommonsChunkPlugin({
       name: ['app', 'vendor', 'polyfills']
