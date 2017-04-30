@@ -2,6 +2,7 @@ const Webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
+const EnvConfig = require('./webpack.env');
 const paths = require('./paths');
 
 module.exports = {
@@ -10,11 +11,6 @@ module.exports = {
     'polyfills': './src/polyfills.ts',
     'vendor': './src/vendor.ts',
     'app': './src/main.ts'
-  },
-  output: {
-    path: paths.BuildRoot,
-    filename: '[name].js',
-    sourceMapFilename: '[name].map.js'
   },
   resolve: {
     extensions: ['.ts', '.js']
@@ -38,54 +34,10 @@ module.exports = {
         loaders: [
           'file-loader?name=assets/[name].[hash].[ext]'
         ]
-      },
-      {
-        test: /\.scss$/,
-        include: paths.AppRoot,
-        use: [{
-            loader: 'raw-loader'
-          },
-          {
-            loader: 'postcss-loader'
-          },
-          {
-            loader: 'sass-loader',
-            query: {
-              sourceMaps: true
-            }
-          }
-        ]
-      },
-      {
-        test: /\.scss$/,
-        exclude: paths.AppRoot,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [{
-              loader: 'css-loader',
-              query: {
-                modules: false,
-                sourceMaps: true
-              }
-            },
-            {
-              loader: 'postcss-loader'
-            },
-            {
-              loader: 'sass-loader',
-              query: {
-                sourceMaps: true
-              }
-            }
-          ]
-        })
       }
     ]
   },
   plugins: [
-    new ExtractTextPlugin({
-      filename: 'style.css'
-    }),
     new Webpack.ContextReplacementPlugin(
       /angular(\\|\/)core(\\|\/)@angular/,
       paths.SourceRoot, {}
@@ -95,6 +47,10 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       template: './src/index.html'
+    }),
+    new Webpack.DefinePlugin({
+      ENV: JSON.stringify(EnvConfig.env),
+      IS_PRODUCTION: JSON.stringify(EnvConfig.isProduction)
     })
   ]
 };
