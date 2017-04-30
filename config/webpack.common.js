@@ -3,48 +3,65 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const EnvConfig = require('./webpack.env');
-const paths = require('./paths');
+const Paths = require('./paths');
 
 module.exports = {
-  target: 'web',
   entry: {
-    'polyfills': './src/polyfills.ts',
-    'vendor': './src/vendor.ts',
-    'app': './src/main.ts'
+    polyfills: './src/polyfills.ts',
+    vendor: './src/vendor.ts',
+    main: './src/main.ts'
   },
+
+  output: {
+    path: Paths.BuildRoot,
+    filename: '[name].[hash].js',
+    chunkFilename: '[id].[hash].chunk.js'
+  },
+
+  devServer: {
+    contentBase: Paths.BuildRoot,
+    inline: true,
+    historyApiFallback: true,
+    overlay: {
+      warnings: true,
+      errors: true
+    }
+  },
+
   resolve: {
     extensions: ['.ts', '.js']
   },
+
   module: {
     rules: [{
-        test: /\.ts$/,
-        loaders: [
-          'ts-loader',
-          'angular2-template-loader'
-        ]
-      },
-      {
-        test: /\.html$/,
-        loaders: [
-          'html-loader'
-        ]
-      },
-      {
         test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/,
-        loaders: [
-          'file-loader?name=assets/[name].[hash].[ext]'
-        ]
+        use: ['file-loader?name=[path][name].[ext]']
+      },
+      {
+        test: /\.scss$/,
+        include: Paths.AppRoot,
+        use: ['raw-loader', 'postcss-loader', 'sass-loader'],
+      },
+      {
+        test: /\.scss$/,
+        exclude: Paths.AppRoot,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: ['css-loader', 'postcss-loader', 'sass-loader']
+        })
       }
     ]
   },
+
   plugins: [
     new Webpack.ContextReplacementPlugin(
       /angular(\\|\/)core(\\|\/)@angular/,
-      paths.SourceRoot, {}
+      Paths.SourceRoot, {}
     ),
     new Webpack.optimize.CommonsChunkPlugin({
-      name: ['app', 'vendor', 'polyfills']
+      name: ['main', 'vendor', 'polyfills']
     }),
+    new ExtractTextPlugin('[name].[hash].css'),
     new HtmlWebpackPlugin({
       template: './src/index.html'
     }),

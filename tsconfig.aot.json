@@ -36,6 +36,10 @@
 			"node"
 		]
 	},
+	"files": [
+		"src/app/app.module.ts",
+		"src/main.aot.ts"
+	],
 	"include": [
 		"src/**/*.ts"
 	],
@@ -45,7 +49,11 @@
 		"coverage",
 		"node_modules",
 		"build",
-		"**/*.spec.ts",
-		"**/*.aot.ts"
-	]
+		"**/*.spec.ts"
+	],
+	"angularCompilerOptions": {
+		"genDir": "aot",
+		"entryModule": "./src/app/app.module#AppModule",
+		"skipMetadataEmit": true
+	}
 }
