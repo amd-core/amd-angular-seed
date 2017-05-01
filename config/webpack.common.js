@@ -13,13 +13,13 @@ module.exports = {
   },
 
   output: {
-    path: Paths.BuildRoot,
+    path: Paths.AppBuildRoot,
     filename: '[name].[hash].js',
     chunkFilename: '[id].[hash].chunk.js'
   },
 
   devServer: {
-    contentBase: Paths.BuildRoot,
+    contentBase: Paths.AppBuildRoot,
     inline: true,
     historyApiFallback: true,
     overlay: {

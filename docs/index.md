@@ -27,18 +27,39 @@
 
 - [x] JIT compilation
 - [x] AOT compilation
-- [ ] Server side rendering
+- [ ] Unit testing configuration
+- [x] Server side rendering
 - [ ] Dynamic environment configuration loading
 - [ ] Code generation
   - [ ] Module
+    - [ ] Main
+    - [ ] Test
   - [ ] Component
+    - [ ] Main
+    - [ ] Test
+    - [ ] Add to new module
+    - [ ] Add to existing module
+  - [ ] Service
+    - [ ] Main
+    - [ ] Test
+    - [ ] Add to new module
+    - [ ] Add to existing module
   - [ ] Directive
+    - [ ] Main
+    - [ ] Test
+    - [ ] Add to new module
+    - [ ] Add to existing module
   - [ ] Filter
+    - [ ] Main
+    - [ ] Test
+    - [ ] Add to new module
+    - [ ] Add to existing module
 
 # Todo
 
 - [ ] Dynamic CSS build based configuration, specifically for minification
 - [ ] Load images through a loader instead of require.context
+- [ ] Make a common TypeScript config and reuse between all configs
 
 # Documentation
 

@@ -37,8 +37,8 @@
 		]
 	},
 	"files": [
-		"src/app/app.module.ts",
-		"src/main.aot.ts"
+    "src/server/app.server.ts",
+    "src/server/server.aot.ts"
 	],
 	"include": [
 		"src/**/*.ts"
@@ -49,8 +49,7 @@
 		"coverage",
 		"node_modules",
 		"build",
-		"**/*.spec.ts",
-		"src/server/**/*"
+		"**/*.spec.ts"
 	],
 	"angularCompilerOptions": {
 		"genDir": "aot",

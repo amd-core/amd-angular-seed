@@ -6,6 +6,9 @@ const CommonConfig = require('./webpack.common');
 const ProdPlugins = require('./prod.plugins');
 
 module.exports = WebpackMerge(CommonConfig, {
+  entry: {
+    main: './src/main.aot.ts'
+  },
   module: {
     rules: [{
         test: /\.html$/,
