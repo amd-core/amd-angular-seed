@@ -1,0 +1,9 @@
+import { NgModule } from '@angular/core';
+
+import { {{properCase name}}Component }   from './{{dashCase name}}.component';
+
+@NgModule({
+	declarations: [{{properCase name}}Component],
+	exports: [{{properCase name}}Component]
+})
+export class {{properCase name}}Module { }

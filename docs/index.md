@@ -8,7 +8,7 @@
 - [x] JavaScript
   - [x] Optimisation
   - [ ] Linting (in-editor only)
-- [x] SASS compilation
+- [x] SASS transpilation
 - [ ] CSS optimisation
   - [ ] Minification
   - [x] Post processing
@@ -18,6 +18,8 @@
   - [ ] Sprite sheet generation
 - [ ] Favicon generation
 - [ ] Independent environment and build configuration
+- [ ] Code Splitting
+- [ ] HTTP2
 - [ ] Progressive web app capability
   - [ ] Offline support: service worker / appcache configuration generation
   - [ ] Web app manifest generation
@@ -30,14 +32,15 @@
 - [ ] Unit testing configuration
 - [x] Server side rendering
 - [ ] Dynamic environment configuration loading
+- [ ] Lazy load routes
 - [ ] Code generation
   - [ ] Module
     - [ ] Main
     - [ ] Test
-  - [ ] Component
-    - [ ] Main
+  - [x] Component
+    - [x] Main
     - [ ] Test
-    - [ ] Add to new module
+    - [x] Add to new module
     - [ ] Add to existing module
   - [ ] Service
     - [ ] Main
@@ -60,6 +63,7 @@
 - [ ] Dynamic CSS build based configuration, specifically for minification
 - [ ] Load images through a loader instead of require.context
 - [ ] Make a common TypeScript config and reuse between all configs
+- [ ] Configure 'amd' selector globally and dynamically
 
 # Documentation
 
