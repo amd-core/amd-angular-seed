@@ -31,7 +31,17 @@ module.exports = {
       },
       {
         test: /\.ts$/,
-        use: ['@ngtools/webpack']
+        use: [
+          '@ngtools/webpack',
+          // {
+          //   loader: 'tslint-loader',
+          //   query: {
+          //     emitErrors: true,
+          //     failOnHint: true,
+          //     typeCheck: true
+          //   }
+          // }
+        ]
       }, {
         test: /\.(png|jpe?g|gif|svg|ico)$/,
         include: Paths.ImageRoot,

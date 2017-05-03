@@ -12,7 +12,17 @@ module.exports = WebpackMerge(CommonConfig, {
   module: {
     rules: [{
       test: /\.ts$/,
-      loader: '@ngtools/webpack'
+      use: [
+        '@ngtools/webpack',
+        {
+          loader: 'tslint-loader',
+          query: {
+            emitErrors: true,
+            failOnHint: true,
+            typeCheck: true
+          }
+        }
+      ]
     }]
   },
   plugins: [
