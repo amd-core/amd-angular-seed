@@ -1,6 +1,7 @@
 const Webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 const EnvConfig = require('./webpack.env');
 const Paths = require('./paths');
@@ -14,8 +15,9 @@ module.exports = {
 
   output: {
     path: Paths.AppBuildRoot,
-    filename: '[name].[hash].js',
-    chunkFilename: '[id].[hash].chunk.js'
+    filename: 'js/[name].[hash].js',
+    chunkFilename: 'js/[id].[hash].chunk.js',
+    publicPath: '/public/'
   },
 
   devServer: {
@@ -34,8 +36,27 @@ module.exports = {
 
   module: {
     rules: [{
-        test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/,
-        use: ['file-loader?name=[path][name].[ext]']
+        test: /\.html$/,
+        use: 'html-loader'
+      }, {
+        test: /\.(png|jpe?g|gif|svg|ico)$/,
+        include: Paths.ImageRoot,
+        use: [{
+          loader: 'file-loader',
+          query: {
+            name: 'images/[name].[hash].[ext]'
+          }
+        }]
+      }, {
+        test: /\.(svg|woff|woff2|ttf|eot)$/,
+        include: Paths.FontRoot,
+        use: [{
+          loader: 'file-loader',
+          query: {
+            name: 'fonts/[name].[hash].[ext]',
+            emitFile: false
+          }
+        }]
       },
       {
         test: /\.scss$/,
@@ -61,13 +82,16 @@ module.exports = {
     new Webpack.optimize.CommonsChunkPlugin({
       name: ['main', 'vendor', 'polyfills']
     }),
-    new ExtractTextPlugin('[name].[hash].css'),
+    new ExtractTextPlugin('css/[name].[hash].css'),
     new HtmlWebpackPlugin({
       template: './src/index.html'
     }),
     new Webpack.DefinePlugin({
       ENV: JSON.stringify(EnvConfig.env),
       IS_PRODUCTION: JSON.stringify(EnvConfig.isProduction)
+    }),
+    new CleanWebpackPlugin([Paths.AppBuildRoot], {
+      root: Paths.ProjectRoot
     })
   ]
 };

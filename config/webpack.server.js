@@ -1,6 +1,8 @@
 const Webpack = require('webpack');
 const WebpackMerge = require('webpack-merge');
 const NgTools = require('@ngtools/webpack');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const NodeExternals = require('webpack-node-externals');
 
 const Paths = require('./paths');
 
@@ -11,16 +13,17 @@ module.exports = {
   },
   output: {
     path: Paths.BuildRoot,
-    filename: '[name].js'
+    filename: '[name].js',
+    publicPath: '/public/'
   },
   resolve: {
     extensions: ['.ts', '.js', '.json']
   },
+  externals: [NodeExternals()],
   module: {
-    rules: [
-      {
+    rules: [{
         test: /\.html$/,
-        use: ['raw-loader']
+        use: 'html-loader'
       },
       {
         test: /\.scss$/,
@@ -29,6 +32,26 @@ module.exports = {
       {
         test: /\.ts$/,
         use: ['@ngtools/webpack']
+      }, {
+        test: /\.(png|jpe?g|gif|svg|ico)$/,
+        include: Paths.ImageRoot,
+        use: [{
+          loader: 'file-loader',
+          query: {
+            name: 'images/[name].[hash].[ext]',
+            emitFile: false
+          }
+        }]
+      }, {
+        test: /\.(svg|woff|woff2|ttf|eot)$/,
+        include: Paths.FontRoot,
+        use: [{
+          loader: 'file-loader',
+          query: {
+            name: 'fonts/[name].[hash].[ext]',
+            emitFile: false
+          }
+        }]
       }
     ]
   },
@@ -36,6 +59,10 @@ module.exports = {
     new Webpack.NoEmitOnErrorsPlugin(),
     new NgTools.AotPlugin({
       tsConfigPath: './tsconfig.server.json'
+    }),
+    new CleanWebpackPlugin([Paths.BuildRoot], {
+      root: Paths.ProjectRoot,
+      exclude: Paths.AppBuildRoot
     })
   ]
 };

@@ -11,14 +11,9 @@ module.exports = WebpackMerge(CommonConfig, {
   },
   module: {
     rules: [{
-        test: /\.html$/,
-        loader: 'raw-loader'
-      },
-      {
-        test: /\.ts$/,
-        loader: '@ngtools/webpack'
-      }
-    ]
+      test: /\.ts$/,
+      loader: '@ngtools/webpack'
+    }]
   },
   plugins: [
     ...ProdPlugins,
