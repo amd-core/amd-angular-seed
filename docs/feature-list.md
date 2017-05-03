@@ -5,6 +5,9 @@
 - [x] TypeScript
   - [x] Transpilation
   - [ ] Linting
+    - [x] Standard
+    - [x] Angular
+    - [ ] Extra
 - [x] JavaScript
   - [x] Optimisation
   - [ ] Linting (in-editor only)
