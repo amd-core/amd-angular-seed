@@ -31,6 +31,7 @@ module.exports = {
   },
 
   resolve: {
+    mainFields: ["es2015", "module", "main"], // make sure this actually works, might need to transpile
     extensions: ['.ts', '.js']
   },
 
