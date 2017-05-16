@@ -16,8 +16,7 @@ module.exports = {
   output: {
     path: Paths.AppBuildRoot,
     filename: 'js/[name].[hash].js',
-    chunkFilename: 'js/[id].[hash].chunk.js',
-    publicPath: '/public/'
+    chunkFilename: 'js/[id].[hash].chunk.js'
   },
 
   devServer: {
@@ -31,47 +30,47 @@ module.exports = {
   },
 
   resolve: {
-    mainFields: ["es2015", "module", "main"], // make sure this actually works, might need to transpile
+    mainFields: ["browser", "module", "main"],
     extensions: ['.ts', '.js']
   },
 
   module: {
     rules: [{
-        test: /\.html$/,
-        use: 'html-loader'
-      }, {
-        test: /\.(png|jpe?g|gif|svg|ico)$/,
-        include: Paths.ImageRoot,
-        use: [{
-          loader: 'file-loader',
-          query: {
-            name: 'images/[name].[hash].[ext]'
-          }
-        }]
-      }, {
-        test: /\.(svg|woff|woff2|ttf|eot)$/,
-        include: Paths.FontRoot,
-        use: [{
-          loader: 'file-loader',
-          query: {
-            name: 'fonts/[name].[hash].[ext]',
-            emitFile: false
-          }
-        }]
-      },
-      {
-        test: /\.scss$/,
-        include: Paths.AppRoot,
-        use: ['raw-loader', 'postcss-loader', 'sass-loader'],
-      },
-      {
-        test: /\.scss$/,
-        exclude: Paths.AppRoot,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: ['css-loader', 'postcss-loader', 'sass-loader']
-        })
-      }
+      test: /\.html$/,
+      use: 'html-loader'
+    }, {
+      test: /\.(png|jpe?g|gif|svg|ico)$/,
+      include: Paths.ImageRoot,
+      use: [{
+        loader: 'file-loader',
+        query: {
+          name: 'images/[name].[hash].[ext]'
+        }
+      }]
+    }, {
+      test: /\.(svg|woff|woff2|ttf|eot)$/,
+      include: Paths.FontRoot,
+      use: [{
+        loader: 'file-loader',
+        query: {
+          name: 'fonts/[name].[hash].[ext]',
+          emitFile: false
+        }
+      }]
+    },
+    {
+      test: /\.scss$/,
+      include: Paths.AppRoot,
+      use: ['raw-loader', 'postcss-loader', 'sass-loader'],
+    },
+    {
+      test: /\.scss$/,
+      exclude: Paths.AppRoot,
+      use: ExtractTextPlugin.extract({
+        fallback: 'style-loader',
+        use: ['css-loader', 'postcss-loader', 'sass-loader']
+      })
+    }
     ]
   },
 
