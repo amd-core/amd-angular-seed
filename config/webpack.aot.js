@@ -10,7 +10,7 @@ module.exports = WebpackMerge(CommonConfig, {
     main: './src/main.aot.ts'
   },
   output: {
-    publicPath: '/public'
+    publicPath: '/public/'
   },
   module: {
     rules: [{
