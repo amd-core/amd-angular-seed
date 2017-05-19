@@ -2,32 +2,23 @@ const Webpack = require('webpack');
 const WebpackMerge = require('webpack-merge');
 const NgTools = require('@ngtools/webpack');
 
-const CommonConfig = require('./webpack.common');
-const ProdPlugins = require('./prod.plugins');
+const CommonConfig = require('./common/webpack.common');
+const ProdPlugins = require('./common/prod.plugins');
 
 module.exports = WebpackMerge(CommonConfig, {
   entry: {
     main: './src/main.aot.ts'
   },
-  output: {
-    publicPath: '/public/'
-  },
+
   module: {
     rules: [{
       test: /\.ts$/,
       use: [
-        '@ngtools/webpack',
-        {
-          loader: 'tslint-loader',
-          query: {
-            emitErrors: true,
-            failOnHint: true,
-            typeCheck: true
-          }
-        }
+        '@ngtools/webpack'
       ]
     }]
   },
+  
   plugins: [
     ...ProdPlugins,
     new NgTools.AotPlugin({

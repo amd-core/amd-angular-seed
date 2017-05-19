@@ -30,7 +30,7 @@ module.exports = {
   },
 
   resolve: {
-    mainFields: ["browser", "module", "main"],
+    mainFields: ["module", "browser", "main"],
     extensions: ['.ts', '.js']
   },
 
@@ -53,8 +53,7 @@ module.exports = {
       use: [{
         loader: 'file-loader',
         query: {
-          name: 'fonts/[name].[hash].[ext]',
-          emitFile: false
+          name: 'fonts/[name].[hash].[ext]'
         }
       }]
     },
