@@ -1,10 +1,9 @@
 const Webpack = require('webpack');
-const WebpackMerge = require('webpack-merge');
 const NgTools = require('@ngtools/webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const NodeExternals = require('webpack-node-externals');
 
-const Paths = require('./paths');
+const Paths = require('./common/paths');
 
 module.exports = {
   target: 'node',
@@ -32,15 +31,7 @@ module.exports = {
       {
         test: /\.ts$/,
         use: [
-          '@ngtools/webpack',
-          // {
-          //   loader: 'tslint-loader',
-          //   query: {
-          //     emitErrors: true,
-          //     failOnHint: true,
-          //     typeCheck: true
-          //   }
-          // }
+          '@ngtools/webpack'
         ]
       }, {
         test: /\.(png|jpe?g|gif|svg|ico)$/,
@@ -66,6 +57,10 @@ module.exports = {
     ]
   },
   plugins: [
+    new Webpack.ContextReplacementPlugin(
+      /angular(\\|\/)core(\\|\/)@angular/,
+      Paths.SourceRoot, {}
+    ),
     new Webpack.NoEmitOnErrorsPlugin(),
     new NgTools.AotPlugin({
       tsConfigPath: './tsconfig.server.json'

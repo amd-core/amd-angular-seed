@@ -12,12 +12,13 @@
     "build": "webpack --progress",
     "build:watch": "npm run build -- --watch",
     "start": "webpack-dev-server --progress",
-    "build:prod": "webpack --progress --config=config/webpack.prod --env=production",
+    "build:prod": "npm run start -- --config=config/webpack.prod --env=production",
     "start:prod": "webpack-dev-server --progress --config=config/webpack.prod --env=production",
     "build:aot": "npm run build -- --config=config/webpack.aot --env=production",
     "build:aot:watch": "npm run build:watch -- --config=config/webpack.aot --env=production",
-    "start:aot": "npm run start:base -- --config=config/webpack.aot --env=production",
-    "build:server": "webpack --progress --config=config/webpack.server --env=production",
+    "start:aot": "npm run start -- --config=config/webpack.aot --env=production",
+    "build:aot:server": "npm run build -- --config=config/webpack.aot.server --env=production",
+    "build:server": "npm run build -- --config=config/webpack.server --env=production",
     "start:server": "node build/server"
   },
   "contributors": [
