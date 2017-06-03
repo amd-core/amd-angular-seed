@@ -2,6 +2,7 @@ const Webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const Path = require('path');
 
 const EnvConfig = require('./webpack.env');
 const Paths = require('./paths');
@@ -30,6 +31,7 @@ module.exports = {
   },
 
   resolve: {
+    modules: [Path.join(__dirname, '..', '..', "node_modules")],
     mainFields: ["module", "browser", "main"],
     extensions: ['.ts', '.js']
   },
