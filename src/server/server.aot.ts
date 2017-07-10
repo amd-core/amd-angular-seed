@@ -14,8 +14,8 @@ import { RenderingEngine } from './rendering-engine';
 
 const Server: express.Express = express();
 
-const BuildRoot = path.join('build');
-const AppBuildRoot = path.join(BuildRoot, 'public');
+const BuildRoot: string = path.join('build');
+const AppBuildRoot: string = path.join(BuildRoot, 'public');
 
 Server.engine('html', RenderingEngine({
     bootstrap: [AppServerModuleNgFactory]
@@ -27,18 +27,18 @@ Server.use(morgan('combined'));
 Server.use(cors());
 Server.use(helmet());
 
-Server.get('/public/*', (req, res, next) => {
+Server.get('/public/*', (req: express.Request, res: express.Response, next: express.NextFunction) => {
     let fileName: string = req.originalUrl;
-    let root = fileName.startsWith('/node_modules/') ? '.' : BuildRoot;
+    let root: string = fileName.startsWith('/node_modules/') ? '.' : BuildRoot;
 
     console.log('file request', fileName);
 
-    res.sendFile(fileName, { root }, (err) => {
+    res.sendFile(fileName, { root }, (err: Error) => {
         if (err) { return next(err); }
     });
 });
 
-Server.get('*', (req, res) => {
+Server.get('*', (req: express.Request, res: express.Response) => {
     res.render('index.html', { req });
 });
 
