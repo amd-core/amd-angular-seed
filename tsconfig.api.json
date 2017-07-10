@@ -1,0 +1,39 @@
+{
+	"compilerOptions": {
+		"target": "es5",
+		"module": "commonjs",
+		"moduleResolution": "node",
+
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true,
+		"allowSyntheticDefaultImports": true,
+		"importHelpers": true,
+		"pretty": true,
+		"sourceMap": true,
+
+		"baseUrl": "./src",
+		"rootDir": "./src",
+		"sourceRoot": "./src",
+		"outDir": "./build",
+
+		"allowUnreachableCode": false,
+		"allowUnusedLabels": false,
+		"alwaysStrict": true,
+		"forceConsistentCasingInFileNames": true,
+		"noUnusedLocals": true,
+		"noImplicitReturns": true,
+		"strictNullChecks": true,
+		"noFallthroughCasesInSwitch": true,
+		"skipLibCheck": true,
+
+		"lib": [
+			"es6"
+		],
+		"types": [
+			"node"
+		]
+	},
+	"files": [
+    "src/api/index.ts"
+	]
+}

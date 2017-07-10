@@ -4,8 +4,8 @@
 	],
 	"rules": {
 		// codelyzer rules
-    "directive-selector": [true, "attribute", "amd", "camelCase"],
-    "component-selector": [true, "element", "amd", "kebab-case"],
+    "directive-selector": [true, "attribute", "fmf", "camelCase"],
+    "component-selector": [true, "element", "fmf", "kebab-case"],
     "use-input-property-decorator": true,
     "use-output-property-decorator": true,
     "use-host-property-decorator": true,
@@ -15,7 +15,7 @@
     "no-forward-ref": true,
     "use-life-cycle-interface": true,
     "use-pipe-transform-interface": true,
-    "pipe-naming": [true, "camelCase", "amd"],
+    "pipe-naming": [true, "camelCase", "fmf"],
     "component-class-suffix": true,
     "directive-class-suffix": true,
     "import-destructuring-spacing": true,

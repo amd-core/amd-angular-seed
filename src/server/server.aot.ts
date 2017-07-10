@@ -12,36 +12,59 @@ import * as helmet from 'helmet';
 import { AppServerModuleNgFactory } from '../../aot/src/server/app.server.ngfactory';
 import { RenderingEngine } from './rendering-engine';
 
-const Server: express.Express = express();
+const Application: express.Application = express();
 
 const BuildRoot: string = path.join('build');
 const AppBuildRoot: string = path.join(BuildRoot, 'public');
 
-Server.engine('html', RenderingEngine({
-    bootstrap: [AppServerModuleNgFactory]
+Application.engine('html', RenderingEngine({
+  bootstrap: [AppServerModuleNgFactory]
 }));
 
-Server.set('views', AppBuildRoot);
+Application.set('views', AppBuildRoot);
 
-Server.use(morgan('combined'));
-Server.use(cors());
-Server.use(helmet());
+Application.use(morgan('combined'));
+Application.use(cors());
+Application.use(helmet());
 
-Server.get('/public/*', (req: express.Request, res: express.Response, next: express.NextFunction) => {
-    let fileName: string = req.originalUrl;
-    let root: string = fileName.startsWith('/node_modules/') ? '.' : BuildRoot;
+Application.get('/public/*', (req: express.Request, res: express.Response, next: express.NextFunction) => {
+  let fileName: string = req.originalUrl;
+  let root: string = fileName.startsWith('/node_modules/') ? '.' : BuildRoot;
 
-    console.log('file request', fileName);
+  console.log('file request', fileName);
 
-    res.sendFile(fileName, { root }, (err: Error) => {
-        if (err) { return next(err); }
+  res.sendFile(fileName, { root }, (err: Error) => {
+    if (err) { return next(err); }
+  });
+});
+
+Application.get('*', (req: express.Request, res: express.Response) => {
+  res.render('index.html', { req });
+});
+
+import * as Sql from 'mssql/msnodesqlv8';
+
+const config: Sql.config = {
+  user: 'nathan.mcgrath',
+  password: '@AnimaMundi91',
+  server: 'DUB-US-D-MIS01', // You can use 'localhost\\instance' to connect to named instance
+  database: 'RAD06',
+  options: {
+    trustedConnection: true
+  }
+};
+
+Sql.connect(config)
+  .then((pool: any) => {
+    console.log('Connected to the database');
+
+    Application.listen(3200, () => {
+      console.log('Application listening');
     });
-});
+  }).catch((err: Error) => {
+    console.error('SQL error', err);
+  });
 
-Server.get('*', (req: express.Request, res: express.Response) => {
-    res.render('index.html', { req });
-});
-
-Server.listen(3200, () => {
-    console.log('listening on port 3200...');
+Sql.on('error', (err: Error) => {
+  console.error('SQL error event', err);
 });

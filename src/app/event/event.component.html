@@ -1,0 +1,14 @@
+<div class="container-fluid d-flex flex-row justify-content-center">
+  <div *ngIf="hasPlayImage; else pauseImage">
+    <img src="../../assets/images/play.svg">
+  </div>
+
+  <ng-template #pauseImage>
+    <img src="../../assets/images/pause.svg">
+  </ng-template>
+
+  <div class="row d-flex flex-column justify-content-center">
+    <div>{{label}}</div>
+    <div>{{time | date: 'mediumTime'}}</div>
+  </div>
+</div>

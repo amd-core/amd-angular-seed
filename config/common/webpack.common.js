@@ -38,40 +38,50 @@ module.exports = {
 
   module: {
     rules: [{
-      test: /\.html$/,
-      use: 'html-loader'
-    }, {
-      test: /\.(png|jpe?g|gif|svg|ico)$/,
-      include: Paths.ImageRoot,
-      use: [{
-        loader: 'file-loader',
-        query: {
-          name: 'images/[name].[hash].[ext]'
-        }
-      }]
-    }, {
-      test: /\.(svg|woff|woff2|ttf|eot)$/,
-      include: Paths.FontRoot,
-      use: [{
-        loader: 'file-loader',
-        query: {
-          name: 'fonts/[name].[hash].[ext]'
-        }
-      }]
-    },
-    {
-      test: /\.scss$/,
-      include: Paths.AppRoot,
-      use: ['raw-loader', 'postcss-loader', 'sass-loader'],
-    },
-    {
-      test: /\.scss$/,
-      exclude: Paths.AppRoot,
-      use: ExtractTextPlugin.extract({
-        fallback: 'style-loader',
-        use: ['css-loader', 'postcss-loader', 'sass-loader']
-      })
-    }
+        test: /\.html$/,
+        use: 'html-loader'
+      }, {
+        test: /\.(png|jpe?g|gif|svg|ico)$/,
+        include: Paths.ImageRoot,
+        use: [{
+          loader: 'file-loader',
+          query: {
+            name: 'images/[name].[hash].[ext]'
+          }
+        }]
+      }, {
+        test: /\.(svg|woff|woff2|ttf|eot)$/,
+        include: Paths.FontRoot,
+        use: [{
+          loader: 'file-loader',
+          query: {
+            name: 'fonts/[name].[hash].[ext]'
+          }
+        }]
+      },
+      {
+        test: /\.scss$/,
+        include: Paths.AppRoot,
+        use: ['raw-loader', 'postcss-loader', {
+          loader: 'sass-loader',
+          options: {
+            includePaths: [Path.resolve(Paths.ProjectRoot, '..', 'node_modules')]
+          }
+        }],
+      },
+      {
+        test: /\.scss$/,
+        exclude: Paths.AppRoot,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: ['css-loader', 'postcss-loader', {
+            loader: 'sass-loader',
+            options: {
+              includePaths: [Path.resolve(Paths.ProjectRoot, '..', 'node_modules')]
+            }
+          }]
+        })
+      }
     ]
   },
 
