@@ -1,11 +1,11 @@
 <div class="container-fluid d-flex flex-row justify-content-center">
   <div style="width: 400px" class="d-flex flex-row justify-content-start text-left">
     <div *ngIf="hasPlayImage; else pauseImage">
-      <img src="../../assets/images/play.svg" width="90px" height="90px">
+      <img src="../../assets/images/play.svg" class="mr-3">
     </div>
 
     <ng-template #pauseImage>
-      <img src="../../assets/images/pause.svg" width="90px" height="90px">
+      <img src="../../assets/images/pause.svg" class="mr-3">
     </ng-template>
 
     <div class="row d-flex flex-column justify-content-center">

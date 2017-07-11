@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="94px" height="92px" viewBox="0 0 94 92" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="78px" height="78px" viewBox="0 0 78 78" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: Sketch 45.1 (43504) - http://www.bohemiancoding.com/sketch -->
     <title>Slice</title>
     <desc>Created with Sketch.</desc>
@@ -23,7 +23,7 @@
         </filter>
     </defs>
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="fab" transform="translate(23.000000, 19.000000)">
+        <g id="fab" transform="translate(13.000000, 11.000000)">
             <g id="button-bg">
                 <use fill="black" fill-opacity="1" filter="url(#filter-4)" xlink:href="#path-3"></use>
                 <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-3"></use>
@@ -31,12 +31,12 @@
                 <circle stroke="url(#linearGradient-2)" stroke-width="0.5" cx="26.3632812" cy="26.3632812" r="26.1132812"></circle>
             </g>
         </g>
-        <g id="noun_975733_cc" transform="translate(39.000000, 36.000000)" fill-rule="nonzero" fill="#FFFFFF">
+        <g id="noun_975733_cc" transform="translate(29.000000, 28.000000)" fill-rule="nonzero" fill="#FFFFFF">
             <g id="Group" transform="translate(0.000000, 0.179789)">
                 <path d="M15.3472221,0.0102232755 C15.1633433,0.0347751114 14.9884267,0.123085613 14.8586283,0.256869159 L0.837718587,14.403778 C0.713252819,14.5292714 0.62949389,14.6952429 0.60213264,14.8706575 L0.00884011786,18.6584335 C-0.0746675339,19.184198 0.447848694,19.7117383 0.968605872,19.6273995 L4.72028007,19.0284024 C4.89402401,19.000778 5.05844279,18.9162137 5.18271312,18.7905512 L19.1948839,4.64364237 C19.5061879,4.33038237 19.5061879,3.75890808 19.1948839,3.44564808 L16.0364743,0.256869159 C15.8254576,0.0675268659 15.5934733,-0.0338431828 15.3472221,0.0102232755 L15.3472221,0.0102232755 Z M15.4431819,2.0538606 L17.4237176,4.04464523 L16.8304252,4.63483359 L14.8586283,2.64404896 L15.4431819,2.0538606 Z M13.6720435,3.84204325 L15.6438403,5.83282788 L4.98205464,16.5971787 L3.01020195,14.606394 L13.6720435,3.84204325 Z M2.1115524,16.095064 L3.50753455,17.5044691 L1.84980575,17.7687325 L2.1115524,16.095064 Z" id="Shape"></path>
             </g>
         </g>
-        <path d="M44.5,39.4117647 L44.5,52.5882353" id="Line-3" stroke="#0277BD" stroke-width="5" stroke-linecap="square"></path>
-        <path d="M53.5,39.4117647 L53.5,52.5882353" id="Line-3" stroke="#0277BD" stroke-width="5" stroke-linecap="square"></path>
+        <path d="M34.5,31.4117647 L34.5,44.5882353" id="Line-3" stroke="#0277BD" stroke-width="5" stroke-linecap="square"></path>
+        <path d="M43.5,31.4117647 L43.5,44.5882353" id="Line-3" stroke="#0277BD" stroke-width="5" stroke-linecap="square"></path>
     </g>
 </svg>

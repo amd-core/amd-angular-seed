@@ -55,6 +55,7 @@ export class PositionService {
     clearInterval(this.intervalId);
     this.intervalId = -1;
     this.lastEventTime = new Date();
+    this.trackPosition(true);
     return true;
   }
 
@@ -62,14 +63,15 @@ export class PositionService {
     return !!navigator.geolocation ? true : false;
   }
 
-  private trackPosition(): void {
+  private trackPosition(isFinal: boolean = false): void {
     navigator.geolocation.getCurrentPosition((position: Position) => {
       console.log('Position', position);
 
       this.http.post('http://localhost:3600/position', {
         lat: position.coords.latitude,
         lng: position.coords.longitude,
-        time: new Date().getTime()
+        time: new Date().getTime(),
+        isFinal
       }).subscribe((res: Response) => {
         console.log('Response', res, res.json());
       });

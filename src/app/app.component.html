@@ -1,52 +1,5 @@
-<div class="app container-fluid p-5 d-flex flex-column">
-  <div class="row d-block flex-spacer">
-    <h1 class="text-center">{{currentTime | date: 'mediumTime'}}</h1>
-    <p class="text-center">{{today | date: 'dd/MM/yyyy'}}</p>
-
-    <div *ngIf="isTracking">
-      <div *ngFor="let event of trackingEvents">
-        <fmf-event
-          [label]="event.label"
-          [time]="event.time"
-          [hasPlayImage]="event.hasPlayImage"
-        ></fmf-event>
-      </div>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="m-auto" *ngIf="!isTracking; else stopTrackingElem">
-      <button
-        type="button"	class="btn btn-primary m-auto text-uppercase"
-        (click)="startTracking()">
-        Start Tracking
-      </button>
-    </div>
-
-    <ng-template #stopTrackingElem>
-      <div class="btn-group m-auto">
-        <div *ngIf="isTrackingPaused; else pauseButton">
-          <button
-            type="button"	class="btn btn-primary m-auto text-uppercase"
-            (click)="resumeTracking()">
-            Resume
-          </button>
-        </div>
-
-        <ng-template #pauseButton>
-          <button
-            type="button"	class="btn btn-primary m-auto text-uppercase"
-            (click)="pauseTracking()">
-            Pause
-          </button>
-        </ng-template>
-
-        <button
-          type="button"	class="btn btn-primary m-auto text-uppercase"
-          (click)="stopTracking()">
-          Finish
-        </button>
-      </div>
-    </ng-template>
+<div class="container-fluid app">
+  <div class="row d-block" style="height: 100%">
+    <router-outlet></router-outlet>
   </div>
 </div>
