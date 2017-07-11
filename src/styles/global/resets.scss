@@ -10,7 +10,7 @@ body {
   color: white !important;
   margin: 0;
   background: $fm-flex-green;
-  background: linear-gradient(top, $fm-flex-green 0%, $fm-flex-green 0%, darken($fm-flex-green, 10) 100%);
+  background: linear-gradient(to bottom, $fm-flex-green 0%, $fm-flex-green 0%, darken($fm-flex-green, 10) 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#61bf74', endColorstr='#3d7751', GradientType=0);
   background-repeat: no-repeat;
 }
@@ -20,5 +20,5 @@ body {
 }
 
 .btn {
-  min-width: 250px;
+  min-width: 150px;
 }

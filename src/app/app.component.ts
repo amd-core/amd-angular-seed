@@ -10,7 +10,6 @@ import { PositionService } from './position';
 })
 export class AppComponent implements OnInit {
   public isTracking: boolean = false;
-  public isTrackingSupported: boolean = true;
   public today: Date;
   public currentTime: Date;
   public trackingStartTime: Date;
@@ -24,7 +23,7 @@ export class AppComponent implements OnInit {
   ) { }
 
   public ngOnInit(): void {
-    this.isTrackingSupported = this.positionService.init();
+    this.positionService.init();
     this.today = new Date();
     setInterval(() => {
       this.currentTime = new Date();
@@ -50,6 +49,7 @@ export class AppComponent implements OnInit {
     this.isTracking = !this.positionService.stopTracking();
     this.changeDetectorRef.markForCheck();
     this.trackingEvents = new Array();
+    this.isTrackingPaused = false;
   }
 
   public pauseTracking(): void {
@@ -77,7 +77,6 @@ export class AppComponent implements OnInit {
   }
 
   public getCurrentTime(): Date {
-    console.log('Getting time');
     return new Date();
   }
 }

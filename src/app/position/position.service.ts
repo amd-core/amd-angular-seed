@@ -41,7 +41,7 @@ export class PositionService {
     }
 
     this.trackPosition();
-    this.intervalId = setInterval(this.trackPosition.bind(this), 5000) as any;
+    this.intervalId = setInterval(this.trackPosition.bind(this), 1000) as any;
     this.lastEventTime = new Date();
     return true;
   }
@@ -69,7 +69,7 @@ export class PositionService {
       this.http.post('http://localhost:3600/position', {
         lat: position.coords.latitude,
         lng: position.coords.longitude,
-        time: position.timestamp
+        time: new Date().getTime()
       }).subscribe((res: Response) => {
         console.log('Response', res, res.json());
       });

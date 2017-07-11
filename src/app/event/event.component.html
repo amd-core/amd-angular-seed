@@ -1,14 +1,16 @@
 <div class="container-fluid d-flex flex-row justify-content-center">
-  <div *ngIf="hasPlayImage; else pauseImage">
-    <img src="../../assets/images/play.svg">
-  </div>
+  <div style="width: 400px" class="d-flex flex-row justify-content-start text-left">
+    <div *ngIf="hasPlayImage; else pauseImage">
+      <img src="../../assets/images/play.svg" width="90px" height="90px">
+    </div>
 
-  <ng-template #pauseImage>
-    <img src="../../assets/images/pause.svg">
-  </ng-template>
+    <ng-template #pauseImage>
+      <img src="../../assets/images/pause.svg" width="90px" height="90px">
+    </ng-template>
 
-  <div class="row d-flex flex-column justify-content-center">
-    <div>{{label}}</div>
-    <div>{{time | date: 'mediumTime'}}</div>
+    <div class="row d-flex flex-column justify-content-center">
+      <div>{{label}}</div>
+      <div>{{time | date: 'mediumTime'}}</div>
+    </div>
   </div>
 </div>

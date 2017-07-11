@@ -49,15 +49,4 @@
       </div>
     </ng-template>
   </div>
-
-  <div class="row d-block mt-5">
-    <div class="text-right" *ngIf="isTrackingSupported; else trackingNotSupportedElem">
-      Tracking is supported on this device.
-    </div>
-
-    <ng-template #trackingNotSupportedElem>
-      GPS tracking is not supported on this device,
-      or you have not given the application the correct permission.
-    </ng-template>
-  </div>
 </div>
